@@ -30,6 +30,20 @@ dependencies {
     // Android Support
     implementation "com.android.support:appcompat-v7:$supportVersion"
 
+    // Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
     // Testing
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "com.android.support.test:runner:$androidTestRunnerVersion"

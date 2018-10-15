@@ -6,7 +6,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class BaseViewModel extends ViewModel {
-
     private final CompositeDisposable disposables = new CompositeDisposable();
 
     protected void addDisposable(Disposable disposable) {

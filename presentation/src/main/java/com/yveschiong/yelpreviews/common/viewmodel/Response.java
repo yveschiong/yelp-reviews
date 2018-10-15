@@ -6,17 +6,17 @@ import android.support.annotation.Nullable;
 /**
  * Response holder provided to the UI
  */
-public class Response {
+public class Response<T> {
 
     private final int status;
 
     @Nullable
-    private final String data;
+    private final T data;
 
     @Nullable
     private final Throwable error;
 
-    private Response(@StatusCode int status, @Nullable String data, @Nullable Throwable error) {
+    private Response(@StatusCode int status, @Nullable T data, @Nullable Throwable error) {
         this.status = status;
         this.data = data;
         this.error = error;
@@ -27,7 +27,7 @@ public class Response {
     }
 
     @Nullable
-    public String getData() {
+    public T getData() {
         return data;
     }
 
@@ -40,7 +40,7 @@ public class Response {
         return new Response(Status.LOADING, null, null);
     }
 
-    public static Response success(@NonNull String data) {
+    public static <T> Response success(@NonNull T data) {
         return new Response(Status.SUCCESS, data, null);
     }
 

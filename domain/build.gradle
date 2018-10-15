@@ -30,6 +30,9 @@ dependencies {
     // Android Support
     implementation "com.android.support:appcompat-v7:$supportVersion"
 
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
     // Testing
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "com.android.support.test:runner:$androidTestRunnerVersion"
