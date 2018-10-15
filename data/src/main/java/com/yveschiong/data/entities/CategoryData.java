@@ -1,7 +1,12 @@
 package com.yveschiong.data.entities;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CategoryData {
+    @SerializedName("alias")
     private String alias;
+
+    @SerializedName("title")
     private String title;
 
     public CategoryData(String alias, String title) {

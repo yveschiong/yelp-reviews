@@ -1,10 +1,10 @@
-package com.yveschiong.yelpreviews.ui.searchfilter;
+package com.yveschiong.yelpreviews.ui.searchresult;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.yveschiong.yelpreviews.R;
+import com.yveschiong.yelpreviews.common.BaseActivity;
 
 import javax.inject.Inject;
 
@@ -13,7 +13,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class SearchFilterActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+public class SearchResultsActivity extends BaseActivity implements HasSupportFragmentInjector {
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
@@ -21,10 +21,10 @@ public class SearchFilterActivity extends AppCompatActivity implements HasSuppor
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_filter_activity);
+        setContentView(R.layout.search_results_activity);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, SearchFilterFragment.newInstance())
+                    .replace(R.id.container, SearchResultsFragment.newInstance())
                     .commitNow();
         }
     }

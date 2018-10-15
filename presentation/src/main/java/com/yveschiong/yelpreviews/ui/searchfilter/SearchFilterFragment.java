@@ -2,21 +2,21 @@ package com.yveschiong.yelpreviews.ui.searchfilter;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.databinding.DataBindingUtil;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.yveschiong.yelpreviews.R;
 import com.yveschiong.yelpreviews.common.BaseFragment;
+import com.yveschiong.yelpreviews.common.constants.Constants;
 import com.yveschiong.yelpreviews.common.requests.SearchRequest;
 import com.yveschiong.yelpreviews.common.viewmodel.Response;
 import com.yveschiong.yelpreviews.common.viewmodel.Status;
 import com.yveschiong.yelpreviews.databinding.SearchFilterFragmentBinding;
 import com.yveschiong.yelpreviews.entities.Category;
+import com.yveschiong.yelpreviews.ui.searchresult.SearchResultsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +27,10 @@ import dagger.android.support.AndroidSupportInjection;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class SearchFilterFragment extends BaseFragment {
+public class SearchFilterFragment extends BaseFragment<SearchFilterFragmentBinding> {
 
     @Inject
     SearchFilterViewModelFactory viewModelFactory;
-
-    private SearchFilterFragmentBinding binding;
 
     private SearchFilterViewModel viewModel;
 
@@ -43,18 +41,16 @@ public class SearchFilterFragment extends BaseFragment {
     }
 
     @Override
+    public int getLayoutId() {
+        return R.layout.search_filter_fragment;
+    }
+
+    @Override
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.search_filter_fragment, container, false);
-        return binding.getRoot();
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -109,6 +105,8 @@ public class SearchFilterFragment extends BaseFragment {
     }
 
     private void search(SearchRequest request) {
-
+        Intent intent = new Intent(getContext(), SearchResultsActivity.class);
+        intent.putExtra(Constants.EXTRA_SEARCH_REQUEST, request);
+        startActivity(intent);
     }
 }
