@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Yelp Reviews</string>
 
-    <string name="categories">Categories</string>
+    <string name="price1">$</string>
+    <string name="price2">$$</string>
+    <string name="price3">$$$</string>
+    <string name="price4">$$$$</string>
+    <string name="category">Category</string>
+    <string name="search">Search</string>
 
     <string name="generic_error">An error has occurred.</string>
 </resources>

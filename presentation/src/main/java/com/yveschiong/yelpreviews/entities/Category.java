@@ -1,5 +1,7 @@
 package com.yveschiong.yelpreviews.entities;
 
+import android.support.annotation.NonNull;
+
 public class Category {
     private String alias;
     private String title;
@@ -23,5 +25,11 @@ public class Category {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return title;
     }
 }

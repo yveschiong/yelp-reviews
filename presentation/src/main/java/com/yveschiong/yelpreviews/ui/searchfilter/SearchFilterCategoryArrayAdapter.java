@@ -1,4 +1,4 @@
-package com.yveschiong.yelpreviews.ui.search;
+package com.yveschiong.yelpreviews.ui.searchfilter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

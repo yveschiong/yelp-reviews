@@ -1,4 +1,4 @@
-package com.yveschiong.yelpreviews.ui.search;
+package com.yveschiong.yelpreviews.ui.searchfilter;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;

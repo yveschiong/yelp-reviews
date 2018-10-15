@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="priceMargin">10dp</dimen>
+    <dimen name="pricePadding">10dp</dimen>
+
+    <dimen name="textInputMargin">10dp</dimen>
+    <dimen name="textInputPadding">10dp</dimen>
+
+    <dimen name="buttonMargin">10dp</dimen>
+</resources>

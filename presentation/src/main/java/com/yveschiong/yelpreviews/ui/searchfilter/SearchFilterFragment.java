@@ -1,4 +1,4 @@
-package com.yveschiong.yelpreviews.ui.search;
+package com.yveschiong.yelpreviews.ui.searchfilter;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -9,12 +9,10 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.yveschiong.yelpreviews.R;
 import com.yveschiong.yelpreviews.common.BaseFragment;
+import com.yveschiong.yelpreviews.common.requests.SearchRequest;
 import com.yveschiong.yelpreviews.common.viewmodel.Response;
 import com.yveschiong.yelpreviews.common.viewmodel.Status;
 import com.yveschiong.yelpreviews.databinding.SearchFilterFragmentBinding;
@@ -26,6 +24,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class SearchFilterFragment extends BaseFragment {
 
@@ -61,7 +61,16 @@ public class SearchFilterFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchFilterViewModel.class);
         binding.setViewModel(viewModel);
-        viewModel.response().observe(this, this::handleResponse);
+
+        // Observe for category text input
+        viewModel.categories().observe(this, this::handleResponse);
+
+        // Observe for search clicks
+        addDisposable(viewModel.search()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::search)
+        );
     }
 
     @Override
@@ -70,9 +79,6 @@ public class SearchFilterFragment extends BaseFragment {
 
         adapter = new SearchFilterCategoryArrayAdapter(getContext(), android.R.layout.simple_list_item_1, new ArrayList<>());
         binding.autoCompleteTextView.setAdapter(adapter);
-        binding.autoCompleteTextView.setOnItemClickListener((parent, view1, position, id) -> {
-
-        });
     }
 
     private void handleResponse(Response<List<Category>> response) {
@@ -90,7 +96,7 @@ public class SearchFilterFragment extends BaseFragment {
     }
 
     private void renderLoadingState() {
-
+        // Do nothing for now.
     }
 
     private void renderDataState(List<Category> list) {
@@ -99,6 +105,10 @@ public class SearchFilterFragment extends BaseFragment {
     }
 
     private void renderErrorState(Throwable throwable) {
-        Toast.makeText(getContext(), R.string.generic_error, Toast.LENGTH_SHORT).show();
+        showGenericErrorToast();
+    }
+
+    private void search(SearchRequest request) {
+
     }
 }

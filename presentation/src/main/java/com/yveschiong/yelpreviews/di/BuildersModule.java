@@ -1,8 +1,8 @@
 package com.yveschiong.yelpreviews.di;
 
-import com.yveschiong.yelpreviews.ui.search.SearchActivity;
-import com.yveschiong.yelpreviews.ui.search.SearchFilterFragment;
-import com.yveschiong.yelpreviews.ui.search.SearchFilterFragmentModule;
+import com.yveschiong.yelpreviews.ui.searchfilter.SearchFilterActivity;
+import com.yveschiong.yelpreviews.ui.searchfilter.SearchFilterFragment;
+import com.yveschiong.yelpreviews.ui.searchfilter.SearchFilterFragmentModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -13,7 +13,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class BuildersModule {
     @ContributesAndroidInjector
-    abstract SearchActivity bindSearchActivity();
+    abstract SearchFilterActivity bindSearchActivity();
 
     @ContributesAndroidInjector(modules = SearchFilterFragmentModule.class)
     abstract SearchFilterFragment bindSearchFilterFragment();

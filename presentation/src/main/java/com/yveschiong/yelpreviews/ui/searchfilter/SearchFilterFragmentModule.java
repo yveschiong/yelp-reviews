@@ -1,4 +1,4 @@
-package com.yveschiong.yelpreviews.ui.search;
+package com.yveschiong.yelpreviews.ui.searchfilter;
 
 import com.yveschiong.domain.YelpRepository;
 import com.yveschiong.domain.usecases.GetCategories;
