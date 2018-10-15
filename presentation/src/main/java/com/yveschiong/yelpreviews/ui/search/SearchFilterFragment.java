@@ -1,6 +1,7 @@
-package com.yveschiong.yelpreviews.ui.searchfilter;
+package com.yveschiong.yelpreviews.ui.search;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,12 +12,25 @@ import android.view.ViewGroup;
 
 import com.yveschiong.yelpreviews.R;
 
+import javax.inject.Inject;
+
+import dagger.android.support.AndroidSupportInjection;
+
 public class SearchFilterFragment extends Fragment {
+
+    @Inject
+    SearchFilterViewModelFactory viewModelFactory;
 
     private SearchFilterViewModel viewModel;
 
     public static SearchFilterFragment newInstance() {
         return new SearchFilterFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
     }
 
     @Nullable
@@ -29,7 +43,7 @@ public class SearchFilterFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(SearchFilterViewModel.class);
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchFilterViewModel.class);
     }
 
 }

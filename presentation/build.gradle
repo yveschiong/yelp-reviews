@@ -31,15 +31,21 @@ dependencies {
     // Android Support
     implementation "com.android.support:appcompat-v7:$supportVersion"
 
-    // Android layouts
+    // Android Layouts
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     // Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
 
     // Lifecycle
     implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
     // Testing
     testImplementation "junit:junit:$junitVersion"
