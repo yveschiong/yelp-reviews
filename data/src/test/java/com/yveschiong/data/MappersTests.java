@@ -13,15 +13,12 @@ import com.yveschiong.domain.entities.CategoryEntity;
 import com.yveschiong.domain.entities.ReviewEntity;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for mappers.
  */
-@RunWith(MockitoJUnitRunner.class)
 public class MappersTests {
     @Test
     public void mapping_CategoryDataToCategoryEntity_equal() {

@@ -26,30 +26,30 @@ public class TestObjectUtils {
                 new User("W8UK02IDdRS2GL_66fuq6w", "Ella A.", "https://s3-media3.fl.yelpcdn.com/photo/iwoAD12zkONZxJ94ChAaMg/o.jpg"));
     }
 
-    public static List<Category> getFakeCategoryEntities() {
-        List<Category> categoryEntities = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            categoryEntities.add(getFakeCategory());
+    public static List<Category> getFakeCategories() {
+        List<Category> categories = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            categories.add(getFakeCategory());
         }
 
-        return categoryEntities;
+        return categories;
     }
 
-    public static List<Business> getFakeBusinessEntities() {
-        List<Business> businessEntities = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            businessEntities.add(getFakeBusiness());
+    public static List<Business> getFakeBusinesses() {
+        List<Business> businesses = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            businesses.add(getFakeBusiness());
         }
 
-        return businessEntities;
+        return businesses;
     }
 
-    public static List<Review> getFakeReviewEntities() {
-        List<Review> reviewEntities = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            reviewEntities.add(getFakeReview());
+    public static List<Review> getFakeReviews() {
+        List<Review> reviews = new ArrayList<>();
+        for (int i = 0; i < 11; i++) {
+            reviews.add(getFakeReview());
         }
 
-        return reviewEntities;
+        return reviews;
     }
 }
