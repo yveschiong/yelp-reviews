@@ -9,10 +9,8 @@ import com.yveschiong.yelpreviews.ui.searchfilter.SearchFilterViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import io.reactivex.Observable;
 
@@ -24,7 +22,6 @@ import static org.mockito.Mockito.when;
 /**
  * Tests for SearchFilterViewModel.
  */
-@RunWith(MockitoJUnitRunner.class)
 public class SearchFilterViewModelTests extends UnitTests {
     @Mock
     private GetCategories getCategories;
