@@ -2,6 +2,7 @@ package com.yveschiong.data.api;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Api {
@@ -17,4 +18,7 @@ public interface Api {
             @Query("limit") int limit,
             @Query("offset") int offset
     );
+
+    @GET("businesses/{id}/reviews")
+    Observable<ReviewsResult> getReviewsResult(@Path("id") String id);
 }

@@ -51,7 +51,6 @@ public class SearchFilterFragment extends BaseFragment<SearchFilterFragmentBindi
         super.onAttach(context);
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

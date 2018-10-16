@@ -8,4 +8,5 @@ public class Constants {
     public static final int LIMIT = 15;
 
     public static final String EXTRA_SEARCH_REQUEST = "extra_search_request";
+    public static final String EXTRA_BUSINESS = "extra_business";
 }

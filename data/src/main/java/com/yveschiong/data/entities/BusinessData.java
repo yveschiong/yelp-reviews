@@ -3,6 +3,9 @@ package com.yveschiong.data.entities;
 import com.google.gson.annotations.SerializedName;
 
 public class BusinessData {
+    @SerializedName("id")
+    private String id;
+
     @SerializedName("image_url")
     private String imageUrl;
 
@@ -15,11 +18,24 @@ public class BusinessData {
     @SerializedName("rating")
     private float rating;
 
-    public BusinessData(String imageUrl, String name, int reviewCount, float rating) {
+    @SerializedName("location")
+    private LocationData location;
+
+    public BusinessData(String id, String imageUrl, String name, int reviewCount, float rating, LocationData location) {
+        this.id = id;
         this.imageUrl = imageUrl;
         this.name = name;
         this.reviewCount = reviewCount;
         this.rating = rating;
+        this.location = location;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImageUrl() {
@@ -52,5 +68,13 @@ public class BusinessData {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public LocationData getLocation() {
+        return location;
+    }
+
+    public void setLocation(LocationData location) {
+        this.location = location;
     }
 }

@@ -1,5 +1,8 @@
 package com.yveschiong.yelpreviews.di;
 
+import com.yveschiong.yelpreviews.ui.businessdetail.BusinessDetailActivity;
+import com.yveschiong.yelpreviews.ui.businessdetail.BusinessDetailFragment;
+import com.yveschiong.yelpreviews.ui.businessdetail.BusinessDetailFragmentModule;
 import com.yveschiong.yelpreviews.ui.searchfilter.SearchFilterActivity;
 import com.yveschiong.yelpreviews.ui.searchfilter.SearchFilterFragment;
 import com.yveschiong.yelpreviews.ui.searchfilter.SearchFilterFragmentModule;
@@ -26,4 +29,10 @@ public abstract class BuildersModule {
 
     @ContributesAndroidInjector(modules = SearchResultsFragmentModule.class)
     abstract SearchResultsFragment bindSearchResultsFragment();
+
+    @ContributesAndroidInjector
+    abstract BusinessDetailActivity bindBusinessDetailActivity();
+
+    @ContributesAndroidInjector(modules = BusinessDetailFragmentModule.class)
+    abstract BusinessDetailFragment bindBusinessDetailFragment();
 }
