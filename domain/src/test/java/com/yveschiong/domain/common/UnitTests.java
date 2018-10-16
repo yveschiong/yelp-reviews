@@ -1,4 +1,4 @@
-package com.yveschiong.domain;
+package com.yveschiong.domain.common;
 
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;

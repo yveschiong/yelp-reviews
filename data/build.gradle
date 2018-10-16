@@ -46,6 +46,7 @@ dependencies {
 
     // Testing
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "com.android.support.test:runner:$androidTestRunnerVersion"
 
     implementation project(':domain')

@@ -1,4 +1,4 @@
-package com.yveschiong.domain;
+package com.yveschiong.domain.common.utils;
 
 import com.yveschiong.domain.entities.BusinessEntity;
 import com.yveschiong.domain.entities.CategoryEntity;

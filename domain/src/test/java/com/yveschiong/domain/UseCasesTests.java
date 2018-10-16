@@ -1,8 +1,10 @@
 package com.yveschiong.domain;
 
+import com.yveschiong.domain.common.UnitTests;
 import com.yveschiong.domain.usecases.GetCategories;
 import com.yveschiong.domain.usecases.GetReviews;
 import com.yveschiong.domain.usecases.SearchBusinesses;
+import com.yveschiong.domain.common.utils.EntityUtils;
 
 import org.junit.Test;
 import org.mockito.Mock;
