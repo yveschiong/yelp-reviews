@@ -4,8 +4,7 @@ import com.yveschiong.data.api.Api;
 import com.yveschiong.data.api.AutocompleteResult;
 import com.yveschiong.data.api.BusinessSearchResult;
 import com.yveschiong.data.api.ReviewsResult;
-import com.yveschiong.data.common.UnitTests;
-import com.yveschiong.data.common.utils.DataUtils;
+import com.yveschiong.data.common.utils.TestDataUtils;
 import com.yveschiong.data.mappers.BusinessDataEntityMapper;
 import com.yveschiong.data.mappers.CategoryDataEntityMapper;
 import com.yveschiong.data.mappers.ReviewDataEntityMapper;
@@ -13,14 +12,15 @@ import com.yveschiong.data.repositories.DefaultYelpRespository;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import java.util.Arrays;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import io.reactivex.Observable;
 
-public class DefaultYelpRepositoryTests extends UnitTests {
+@RunWith(MockitoJUnitRunner.class)
+public class DefaultYelpRepositoryTests {
     @Mock
     private Api api;
 
@@ -35,7 +35,7 @@ public class DefaultYelpRepositoryTests extends UnitTests {
     @Test
     public void api_getCategories_autocompleteResult() {
         AutocompleteResult result = new AutocompleteResult();
-        result.setCategories(Arrays.asList(DataUtils.getFakeCategoryData(), DataUtils.getFakeCategoryData()));
+        result.setCategories(TestDataUtils.getFakeCategoryDatas());
 
         Mockito.when(api.getAutocompleteResult(Mockito.anyString())).thenReturn(Observable.just(result));
 
@@ -47,24 +47,24 @@ public class DefaultYelpRepositoryTests extends UnitTests {
     @Test
     public void api_searchBusinesses_businessSearchResult() {
         BusinessSearchResult result = new BusinessSearchResult();
-        result.setBusinesses(Arrays.asList(DataUtils.getFakeBusinessData(), DataUtils.getFakeBusinessData(), DataUtils.getFakeBusinessData()));
+        result.setBusinesses(TestDataUtils.getFakeBusinessDatas());
 
         Mockito.when(api.getBusinessSearchResult(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt())).thenReturn(Observable.just(result));
 
         respository.searchBusinesses("", "", "", "", 15, 0).test()
-                .assertValue(value -> value.size() == 3)
+                .assertValue(value -> value.size() == 12)
                 .assertComplete();
     }
 
     @Test
     public void api_getReviews_reviewsResult() {
         ReviewsResult result = new ReviewsResult();
-        result.setReviews(Arrays.asList(DataUtils.getFakeReviewData()));
+        result.setReviews(TestDataUtils.getFakeReviewDatas());
 
         Mockito.when(api.getReviewsResult(Mockito.anyString())).thenReturn(Observable.just(result));
 
         respository.getReviews("").test()
-                .assertValue(value -> value.size() == 1)
+                .assertValue(value -> value.size() == 4)
                 .assertComplete();
     }
 }

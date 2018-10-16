@@ -1,7 +1,6 @@
 package com.yveschiong.data;
 
-import com.yveschiong.data.common.UnitTests;
-import com.yveschiong.data.common.utils.DataUtils;
+import com.yveschiong.data.common.utils.TestDataUtils;
 import com.yveschiong.data.entities.BusinessData;
 import com.yveschiong.data.entities.CategoryData;
 import com.yveschiong.data.entities.ReviewData;
@@ -14,16 +13,19 @@ import com.yveschiong.domain.entities.CategoryEntity;
 import com.yveschiong.domain.entities.ReviewEntity;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for mappers.
  */
-public class MappersTests extends UnitTests {
+@RunWith(MockitoJUnitRunner.class)
+public class MappersTests {
     @Test
     public void mapping_CategoryDataToCategoryEntity_equal() {
-        CategoryData data = DataUtils.getFakeCategoryData();
+        CategoryData data = TestDataUtils.getFakeCategoryData();
         Mapper<CategoryData, CategoryEntity> mapper = new CategoryDataEntityMapper();
         CategoryEntity entity = mapper.mapFrom(data);
 
@@ -33,7 +35,7 @@ public class MappersTests extends UnitTests {
 
     @Test
     public void mapping_BusinessDataToBusinessEntity_equal() {
-        BusinessData data = DataUtils.getFakeBusinessData();
+        BusinessData data = TestDataUtils.getFakeBusinessData();
         Mapper<BusinessData, BusinessEntity> mapper = new BusinessDataEntityMapper();
         BusinessEntity entity = mapper.mapFrom(data);
 
@@ -51,7 +53,7 @@ public class MappersTests extends UnitTests {
 
     @Test
     public void mapping_ReviewDataToReviewEntity_equal() {
-        ReviewData data = DataUtils.getFakeReviewData();
+        ReviewData data = TestDataUtils.getFakeReviewData();
         Mapper<ReviewData, ReviewEntity> mapper = new ReviewDataEntityMapper();
         ReviewEntity entity = mapper.mapFrom(data);
 
