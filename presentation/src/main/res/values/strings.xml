@@ -13,5 +13,7 @@
         <item quantity="other">%d reviews</item>
     </plurals>
 
+    <string name="greater_location">%1$s, %2$s %3$s</string>
+
     <string name="generic_error">An error has occurred.</string>
 </resources>

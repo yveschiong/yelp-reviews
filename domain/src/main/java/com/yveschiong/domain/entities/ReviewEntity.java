@@ -1,21 +1,21 @@
 package com.yveschiong.domain.entities;
 
 public class ReviewEntity {
-    private float rating;
+    private int rating;
     private String text;
     private UserEntity user;
 
-    public ReviewEntity(float rating, String text, UserEntity user) {
+    public ReviewEntity(int rating, String text, UserEntity user) {
         this.rating = rating;
         this.text = text;
         this.user = user;
     }
 
-    public float getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 

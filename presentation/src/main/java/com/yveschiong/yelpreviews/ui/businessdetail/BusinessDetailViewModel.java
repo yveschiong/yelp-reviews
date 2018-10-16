@@ -32,6 +32,10 @@ public class BusinessDetailViewModel extends BaseViewModel {
         return reviewListResponse;
     }
 
+    public Business getBusiness() {
+        return business;
+    }
+
     public void setBusiness(Business business) {
         this.business = business;
     }

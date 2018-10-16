@@ -13,4 +13,9 @@
     <dimen name="listItemRatingMargin">10dp</dimen>
     <dimen name="listItemRatingDrawablePadding">2dp</dimen>
     <dimen name="listItemReviewsMargin">10dp</dimen>
+
+    <dimen name="businessDetailsImageHeight">200dp</dimen>
+
+    <dimen name="reviewsUserImageHeight">50dp</dimen>
+    <dimen name="reviewsTextMargin">10dp</dimen>
 </resources>

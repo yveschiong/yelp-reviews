@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,15 +10,109 @@
             type="com.yveschiong.yelpreviews.ui.businessdetail.BusinessDetailViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/main"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.businessdetail.BusinessDetailFragment">
+        android:layout_height="match_parent">
 
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.businessdetail.BusinessDetailFragment">
 
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/businessDetailsImageHeight"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.business.imageUrl}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholder="@{@drawable/ic_launcher_background}"
+                tools:src="@drawable/ic_launcher_background" />
 
-    </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/listItemNameMargin"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{viewModel.business.name}"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/addressGreater"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/rating"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/listItemRatingMargin"
+                android:layout_marginLeft="@dimen/listItemRatingMargin"
+                android:drawableEnd="@drawable/ic_star"
+                android:drawableRight="@drawable/ic_star"
+                android:drawablePadding="@dimen/listItemRatingDrawablePadding"
+                android:text="@{String.valueOf(viewModel.business.rating)}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="4.5" />
+
+            <TextView
+                android:id="@+id/reviews"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/listItemReviewsMargin"
+                android:layout_marginLeft="@dimen/listItemReviewsMargin"
+                android:text="@{@plurals/reviews(viewModel.business.reviewCount, viewModel.business.reviewCount)}"
+                app:layout_constraintLeft_toRightOf="@+id/rating"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="10 reviews" />
+
+            <TextView
+                android:id="@+id/address"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/listItemNameMargin"
+                android:layout_marginEnd="@dimen/listItemNameMargin"
+                android:layout_marginRight="@dimen/listItemNameMargin"
+                android:gravity="center"
+                android:text="@{viewModel.business.location.address}"
+                app:layout_constraintBottom_toBottomOf="@id/name"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                tools:text="375 Valencia St" />
+
+            <TextView
+                android:id="@+id/addressGreater"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/listItemNameMargin"
+                android:layout_marginRight="@dimen/listItemNameMargin"
+                android:gravity="bottom"
+                android:text="@{@string/greater_location(viewModel.business.location.city, viewModel.business.location.state, viewModel.business.location.zipCode)}"
+                app:layout_constraintBottom_toBottomOf="@id/reviews"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/reviews"
+                tools:text="San Francisco, CA 94103" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/listItemNameMargin"
+                app:layout_constraintTop_toBottomOf="@id/rating" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </layout>
 

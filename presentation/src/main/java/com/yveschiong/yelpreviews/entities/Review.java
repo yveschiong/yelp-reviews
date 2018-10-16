@@ -1,21 +1,21 @@
 package com.yveschiong.yelpreviews.entities;
 
 public class Review {
-    private float rating;
+    private int rating;
     private String text;
     private User user;
 
-    public Review(float rating, String text, User user) {
+    public Review(int rating, String text, User user) {
         this.rating = rating;
         this.text = text;
         this.user = user;
     }
 
-    public float getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 

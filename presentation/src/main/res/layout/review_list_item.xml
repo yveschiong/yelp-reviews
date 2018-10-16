@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="review"
+            type="com.yveschiong.yelpreviews.entities.Review" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/listItemMargin"
+        android:layout_marginTop="@dimen/listItemMargin"
+        android:layout_marginRight="@dimen/listItemMargin"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/listItemMargin">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/reviewsUserImageHeight"
+                android:layout_height="@dimen/reviewsUserImageHeight"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{review.user.imageUrl}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholder="@{@drawable/ic_launcher_background}"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/listItemNameMargin"
+                android:layout_marginLeft="@dimen/listItemNameMargin"
+                android:text="@{review.user.name}"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toTopOf="@id/rating"
+                app:layout_constraintLeft_toRightOf="@id/image"
+                app:layout_constraintTop_toTopOf="@id/image"
+                tools:text="Ella A." />
+
+            <TextView
+                android:id="@+id/rating"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_star"
+                android:drawableRight="@drawable/ic_star"
+                android:drawablePadding="@dimen/listItemRatingDrawablePadding"
+                android:text="@{String.valueOf(review.rating)}"
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintLeft_toLeftOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="5" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image">
+
+                <TextView
+                    android:id="@+id/reviews"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/reviewsTextMargin"
+                    android:text="@{review.text}"
+                    tools:text="Went back again to this place since the last time i visited the bay area 5 months ago, and nothing has changed. Still the sketchy Mission, Still the cashier..." />
+
+            </ScrollView>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

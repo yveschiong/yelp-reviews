@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.yveschiong.yelpreviews.R;
@@ -27,6 +28,8 @@ public class BusinessDetailFragment extends BaseFragment<BusinessDetailFragmentB
     BusinessDetailViewModelFactory viewModelFactory;
 
     private BusinessDetailViewModel viewModel;
+
+    private ReviewsAdapter adapter;
 
     public static BusinessDetailFragment newInstance() {
         return new BusinessDetailFragment();
@@ -65,6 +68,10 @@ public class BusinessDetailFragment extends BaseFragment<BusinessDetailFragmentB
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        adapter = new ReviewsAdapter();
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.setAdapter(adapter);
     }
 
     private void handleResponse(Response<List<Review>> response) {
@@ -86,7 +93,8 @@ public class BusinessDetailFragment extends BaseFragment<BusinessDetailFragmentB
     }
 
     private void renderDataState(List<Review> list) {
-
+        adapter.setData(list);
+        adapter.notifyItemRangeInserted(0, list.size());
     }
 
     private void renderErrorState(Throwable throwable) {
