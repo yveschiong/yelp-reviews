@@ -17,5 +17,6 @@ ext {
 
     // Testing
     junitVersion = "4.12"
+    mockitoVersion = "2.23.0"
     androidTestRunnerVersion = "1.0.2"
 }
