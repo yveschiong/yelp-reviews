@@ -31,7 +31,8 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
         Toast.makeText(getContext(), R.string.generic_error, Toast.LENGTH_SHORT).show();
     }
 
-    public abstract @LayoutRes int getLayoutId();
+    public abstract @LayoutRes
+    int getLayoutId();
 
     @Nullable
     @Override

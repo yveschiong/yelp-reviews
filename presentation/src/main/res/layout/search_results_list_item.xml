@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.yveschiong.yelpreviews.common.OnAdapterViewClicked" />
+
+        <variable
+            name="business"
+            type="com.yveschiong.yelpreviews.entities.Business" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/listItemMargin"
+        android:layout_marginTop="@dimen/listItemMargin"
+        android:layout_marginRight="@dimen/listItemMargin"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> listener.onClicked(business)}">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/listItemHeight"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{business.imageUrl}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/listItemNameMargin"
+                android:text="@{business.name}"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                tools:text="Restaurant" />
+
+            <TextView
+                android:id="@+id/rating"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/listItemRatingMargin"
+                android:layout_marginLeft="@dimen/listItemRatingMargin"
+                android:drawableEnd="@drawable/ic_star"
+                android:drawableRight="@drawable/ic_star"
+                android:drawablePadding="@dimen/listItemRatingDrawablePadding"
+                android:paddingBottom="@dimen/listItemNameMargin"
+                android:text="@{String.valueOf(business.rating)}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="4.5" />
+
+            <TextView
+                android:id="@+id/reviews"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/listItemReviewsMargin"
+                android:layout_marginLeft="@dimen/listItemReviewsMargin"
+                android:text="@{@plurals/reviews(business.reviewCount, business.reviewCount)}"
+                app:layout_constraintLeft_toRightOf="@+id/rating"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="10 reviews" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

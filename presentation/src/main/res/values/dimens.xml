@@ -6,4 +6,11 @@
     <dimen name="textInputPadding">10dp</dimen>
 
     <dimen name="buttonMargin">10dp</dimen>
+
+    <dimen name="listItemMargin">10dp</dimen>
+    <dimen name="listItemHeight">150dp</dimen>
+    <dimen name="listItemNameMargin">10dp</dimen>
+    <dimen name="listItemRatingMargin">10dp</dimen>
+    <dimen name="listItemRatingDrawablePadding">2dp</dimen>
+    <dimen name="listItemReviewsMargin">10dp</dimen>
 </resources>

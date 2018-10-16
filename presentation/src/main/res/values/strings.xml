@@ -8,5 +8,10 @@
     <string name="category">Category</string>
     <string name="search">Search</string>
 
+    <plurals name="reviews">
+        <item quantity="one">%d review</item>
+        <item quantity="other">%d reviews</item>
+    </plurals>
+
     <string name="generic_error">An error has occurred.</string>
 </resources>

@@ -35,7 +35,7 @@ public class SearchResultsViewModel extends BaseViewModel {
         this.searchRequest = searchRequest;
     }
 
-    MutableLiveData<Response<List<Business>>> businesses() {
+    MutableLiveData<Response<List<Business>>> response() {
         return businessListResponse;
     }
 
@@ -51,6 +51,7 @@ public class SearchResultsViewModel extends BaseViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(__ -> businessListResponse.setValue(Response.loading()))
                 .subscribe(
+                        // TODO Bug where upon rotation the business list used is from the last fetch
                         data -> {
                             businessListResponse.setValue(Response.success(data));
                             offset += businessListResponse.getValue().getData().size();

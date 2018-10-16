@@ -13,6 +13,7 @@ ext {
     lifecycleVersion = "1.1.1"
     rxJavaVersion = "2.2.2"
     rxAndroidVersion = "2.1.0"
+    glideVersion = "4.8.0"
 
     // Testing
     junitVersion = "4.12"

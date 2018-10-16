@@ -5,10 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.yveschiong.yelpreviews.R;
 import com.yveschiong.yelpreviews.common.BaseFragment;
+import com.yveschiong.yelpreviews.common.OnAdapterViewClicked;
 import com.yveschiong.yelpreviews.common.constants.Constants;
 import com.yveschiong.yelpreviews.common.viewmodel.Response;
 import com.yveschiong.yelpreviews.common.viewmodel.Status;
@@ -27,6 +30,10 @@ public class SearchResultsFragment extends BaseFragment<SearchResultsFragmentBin
     SearchResultsViewModelFactory viewModelFactory;
 
     private SearchResultsViewModel viewModel;
+
+    private SearchResultsAdapter adapter;
+
+    private boolean loading = false;
 
     public static SearchResultsFragment newInstance() {
         return new SearchResultsFragment();
@@ -54,13 +61,58 @@ public class SearchResultsFragment extends BaseFragment<SearchResultsFragmentBin
             viewModel.setSearchRequest(getActivity().getIntent().getParcelableExtra(Constants.EXTRA_SEARCH_REQUEST));
         }
 
-        viewModel.businesses().observe(this, this::handleResponse);
-        viewModel.search();
+        viewModel.response().observe(this, this::handleResponse);
+
+        if (savedInstanceState == null) {
+            // We want to make a search the very first time the activity has been created
+            viewModel.search();
+        }
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        adapter = new SearchResultsAdapter((OnAdapterViewClicked<Business>) this::onAdapterViewClicked);
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                if (linearLayoutManager == null) {
+                    return;
+                }
+
+                int totalItemCount = linearLayoutManager.getItemCount();
+                int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                if (!loading && lastVisibleItem + 1 >= totalItemCount) {
+                    // End has been reached
+                    paginate();
+                    setLoading(true);
+                }
+            }
+        });
+    }
+
+    private void onAdapterViewClicked(Business data) {
+
+    }
+
+    private void setLoading(boolean loading) {
+        this.loading = loading;
+    }
+
+    private void paginate() {
+        if (loading) {
+            // We don't want to overload the calls
+            return;
+        }
+
+        viewModel.search();
     }
 
     private void handleResponse(Response<List<Business>> response) {
@@ -78,14 +130,18 @@ public class SearchResultsFragment extends BaseFragment<SearchResultsFragmentBin
     }
 
     private void renderLoadingState() {
-        // Do nothing for now.
+        setLoading(true);
     }
 
     private void renderDataState(List<Business> list) {
-
+        int itemCount = adapter.getItemCount();
+        adapter.appendData(list);
+        adapter.notifyItemRangeInserted(itemCount, list.size());
+        setLoading(false);
     }
 
     private void renderErrorState(Throwable throwable) {
         showGenericErrorToast();
+        setLoading(false);
     }
 }
